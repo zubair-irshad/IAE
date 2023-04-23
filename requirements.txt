@@ -8,7 +8,6 @@ pandas
 pillow
 pyembree
 pytest
-python
 pyyaml
 scikit-image
 scipy
