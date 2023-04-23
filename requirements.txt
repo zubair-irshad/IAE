@@ -1,9 +1,8 @@
 cython
 imageio
 numpy
-numpy-base
+numpy
 matplotlib
-matplotlib-base
 pandas
 pillow
 pyembree
