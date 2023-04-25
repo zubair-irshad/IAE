@@ -62,6 +62,7 @@ class PointsField(Field):
             num = np.random.randint(self.multi_files)
             file_path = os.path.join(model_path, self.file_name, '%s_%02d.npz' % (self.file_name, num))
         
+        print("file_path", file_path)
         try:
             points_dict = np.load(file_path)
         except:
@@ -182,6 +183,7 @@ class PartialPointCloudField(Field):
             num = np.random.randint(self.multi_files)
             file_path = os.path.join(model_path, self.file_name, '%s_%02d.npz' % (self.file_name, num))
         
+        print("file_path", file_path)
         try:
             pointcloud_dict = np.load(file_path)
         except:
