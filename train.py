@@ -12,7 +12,7 @@ from collections import defaultdict
 import shutil
 import wandb
 wandb.login(key="996ee27de02ee214ded37d491317d5a0567f6dc8")
-run = wandb.init(project='implicit_autoencoder', tags=['pointnet2'])
+run = wandb.init(project='/experiments/zubair/iae/implicit_autoencoder', tags=['pointnet2'])
 
 # Arguments
 parser = argparse.ArgumentParser(
