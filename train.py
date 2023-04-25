@@ -1,9 +1,8 @@
 import torch
 import torch.optim as optim
-from tensorboardX import SummaryWriter
+# from tensorboardX import SummaryWriter
 import numpy as np
 import os
-import sys, importlib
 import argparse
 import time, datetime
 import matplotlib; matplotlib.use('Agg')
@@ -11,7 +10,8 @@ from src import config, data
 from src.checkpoints import CheckpointIO
 from collections import defaultdict
 import shutil
-
+import wandb
+wandb.login(key="996ee27de02ee214ded37d491317d5a0567f6dc8")
 
 # Arguments
 parser = argparse.ArgumentParser(
@@ -89,7 +89,7 @@ if metric_val_best == np.inf or metric_val_best == -np.inf:
     metric_val_best = -model_selection_sign * np.inf
 print('Current best validation metric (%s): %.8f'
       % (model_selection_metric, metric_val_best))
-logger = SummaryWriter(os.path.join(out_dir, 'logs'))
+# logger = SummaryWriter(os.path.join(out_dir, 'logs'))
 
 # Shorthands
 print_every = cfg['training']['print_every']
@@ -103,7 +103,9 @@ while True:
     for batch in train_loader:
         it += 1
         loss = trainer.train_step(batch)
-        logger.add_scalar('train/loss', loss, it)
+        # logger.add_scalar('train/loss', loss, it)
+        wandb.log({"train/loss'": loss})
+
 
         # Print output
         if print_every > 0 and (it % print_every) == 0:
@@ -131,7 +133,9 @@ while True:
                   % (model_selection_metric, metric_val))
 
             for k, v in eval_dict.items():
-                logger.add_scalar('val/%s' % k, v, it)
+                # logger.add_scalar('val/%s' % k, v, it)
+                wandb.log({"train/%s" % k: v})
+                
 
             if model_selection_sign * (metric_val - metric_val_best) > 0:
                 metric_val_best = metric_val

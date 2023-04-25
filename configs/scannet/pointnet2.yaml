@@ -2,7 +2,7 @@ method: dfnet
 data:
   input_type: partial_pointcloud
   classes: ['rooms_01']
-  path: data/scannet
+  path: /experiments/zubair/datasets/scannet
   pointcloud_n: 10000
   pointcloud_noise: 0.005
   points_subsample: 2048
@@ -32,7 +32,7 @@ model:
     hidden_size: 32
   c_dim: 256
 training:
-  out_dir: out/scannet/pointnet2
+  out_dir: /experiments/zubair/iae/scannet/pointnet2
   batch_size: 8
   model_selection_metric: iou
   model_selection_mode: maximize
